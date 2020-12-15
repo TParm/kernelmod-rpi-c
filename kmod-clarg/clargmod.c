@@ -9,13 +9,20 @@
  * The module commandline arguments ...
  */
 static int 			 toggleSpeed = 20;
+static int 			 edge = 20;
+static int 			 cnt = 0;
+
 static int 			 ios[2] 	= { -1, -1 };
 static int 			 arr_argc 		= 0;
 
 module_param(toggleSpeed, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(toggleSpeed, "An integer");
+
 module_param_array(ios, int, &arr_argc, 0000);
 MODULE_PARM_DESC(ios, "An array of integers");
+
+module_param(edge, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+MODULE_PARM_DESC(edge, "An integer");
 
 static struct timer_list blink_timer;
 static long data=0;
@@ -33,6 +40,9 @@ static void blink_timer_func(struct timer_list* t)
 	data=!data; 
 	data2=!data2; 
 
+	cnt = cnt + 1;
+	printk(KERN_INFO "Count: %d\n", cnt);
+
 	
 	/* schedule next execution */
 	//blink_timer.data = !data;						// makes the LED toggle 
@@ -49,6 +59,8 @@ static int __init clargmod_init(void)
 
 	int ret = 0;
 	printk(KERN_INFO "myint is an integer: %d\n", toggleSpeed);
+
+	printk(KERN_INFO "Edge %d\n", edge);
 
 	for (i = 0; i < (sizeof ios/ sizeof (int)); i++)
 	{

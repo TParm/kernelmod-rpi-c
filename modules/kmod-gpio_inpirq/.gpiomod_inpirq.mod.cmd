@@ -1,0 +1,1 @@
+cmd_/home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/modules/kmod-gpio_inpirq/gpiomod_inpirq.mod := { echo  /home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/modules/kmod-gpio_inpirq/gpiomod_inpirq.o; echo; } > /home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/modules/kmod-gpio_inpirq/gpiomod_inpirq.mod
