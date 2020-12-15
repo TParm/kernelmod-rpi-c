@@ -5,12 +5,10 @@
 #include <linux/init.h>
 #include <linux/gpio.h>
 
-#define LED1	4
-
 /*
  * The module commandline arguments ...
  */
-static int 			 toggleSpeed = 420;
+static int 			 toggleSpeed = 20;
 static int 			 ios[2] 	= { -1, -1 };
 static int 			 arr_argc 		= 0;
 
@@ -21,6 +19,7 @@ MODULE_PARM_DESC(ios, "An array of integers");
 
 static struct timer_list blink_timer;
 static long data=0;
+static long data2=0;
 
 /*
  * Timer function called periodically
@@ -29,8 +28,11 @@ static void blink_timer_func(struct timer_list* t)
 {
 	printk(KERN_INFO "%s\n", __func__);
 
-	gpio_set_value(LED1, data);
+	gpio_set_value(ios[0], data);
+	gpio_set_value(ios[1], data2);
 	data=!data; 
+	data2=!data2; 
+
 	
 	/* schedule next execution */
 	//blink_timer.data = !data;						// makes the LED toggle 
@@ -60,7 +62,8 @@ static int __init clargmod_init(void)
 	printk(KERN_INFO "%s\n", __func__);
 
 	// register, turn off 
-	ret = gpio_request_one(LED1, GPIOF_OUT_INIT_LOW, "led1");
+	ret = gpio_request_one(ios[0], GPIOF_OUT_INIT_LOW, "ios[0]");
+	ret = gpio_request_one(ios[1], GPIOF_OUT_INIT_LOW, "ios[1]");
 
 	if (ret) {
 		printk(KERN_ERR "Unable to request GPIOs: %d\n", ret);
@@ -90,10 +93,12 @@ static void __exit clargmod_exit(void)
 	del_timer_sync(&blink_timer);
 
 	// turn LED off
-	gpio_set_value(LED1, 0); 
+	gpio_set_value(ios[0], 0); 
+	gpio_set_value(ios[1], 0); 
 	
 	// unregister GPIO 
-	gpio_free(LED1);
+	gpio_free(ios[0]);
+	gpio_free(ios[1]);
 }
 
 MODULE_LICENSE("GPL");
