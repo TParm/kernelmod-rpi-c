@@ -8,12 +8,10 @@
 /*
  * The module commandline arguments ...
  */
-static int toggleSpeed = 1; // Fill in as parameters whe
+static int toggleSpeed = 1; 
 static int cnt = 0;
 static int edgePin = 21;
-
 static int ioPins[2] = {20, 21};
-
 static int arr_argc = 0;
 
 module_param(toggleSpeed, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
@@ -53,7 +51,6 @@ static void blink_timer_func(struct timer_list *t)
 	}
 
 	/* schedule next execution */
-	//blink_timer.data = !data;						// makes the LED toggle
 	blink_timer.expires = jiffies + (toggleSpeed * HZ); // 1 sec.
 	add_timer(&blink_timer);
 }
