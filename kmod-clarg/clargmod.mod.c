@@ -29,8 +29,14 @@ __used __section(__versions) = {
 	{ 0x1ca6efca, "param_ops_int" },
 	{ 0xfe990052, "gpio_free" },
 	{ 0x97934ecf, "del_timer_sync" },
+	{ 0x9dfdf722, "gpio_free_array" },
+	{ 0xc1514a3b, "free_irq" },
+	{ 0x92d5838e, "request_threaded_irq" },
+	{ 0xc3e313bb, "gpiod_to_irq" },
+	{ 0x8574ca6c, "gpio_request_array" },
 	{ 0xc6f46339, "init_timer_key" },
 	{ 0x403f9529, "gpio_request_one" },
+	{ 0x1c51b9f2, "gpiod_get_raw_value" },
 	{ 0x24d273d1, "add_timer" },
 	{ 0x526c3a6c, "jiffies" },
 	{ 0x2ba87a73, "gpiod_set_raw_value" },
@@ -42,4 +48,4 @@ __used __section(__versions) = {
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "A41A3F4EA8A725BEAAC43A5");
+MODULE_INFO(srcversion, "7B01D12AC8451E878ECEAF1");

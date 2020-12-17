@@ -25,7 +25,7 @@
 #define LED1	4
 
 static struct timer_list blink_timer;
-static long data=0;
+static long led1=0;
 
 /*
  * Timer function called periodically
@@ -34,8 +34,8 @@ static void blink_timer_func(struct timer_list* t)
 {
 	printk(KERN_INFO "%s\n", __func__);
 
-	gpio_set_value(LED1, data);
-	data=!data; 
+	gpio_set_value(LED1, led1);
+	led1=!led1; 
 	
 	/* schedule next execution */
 	//blink_timer.data = !data;						// makes the LED toggle 
