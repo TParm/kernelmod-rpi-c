@@ -25,8 +25,8 @@ module_param(edgePin, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(edgePin, "An integer");
 
 static struct timer_list blink_timer;
-static long data = 0;
-static long data2 = 0;
+static long led1 = 0;
+static long led2 = 0;
 
 /* ----------- From gpiomod_inpirq.c -----------  */
 /* Define GPIOs for LEDs */
@@ -51,10 +51,14 @@ static irqreturn_t button_isr(int irq, void *data)
 	if (irq == button_irqs[0] && !gpio_get_value(leds[0].gpio))
 	{
 		gpio_set_value(leds[0].gpio, 1);
+		cnt++;
+		printk(KERN_INFO "Count: %d (off)", cnt);
 	}
 	else if (irq == button_irqs[1] && gpio_get_value(leds[0].gpio))
 	{
 		gpio_set_value(leds[0].gpio, 0);
+		cnt++;
+		printk(KERN_INFO "Count: %d (on)", cnt);
 	}
 
 	return IRQ_HANDLED;
@@ -66,23 +70,14 @@ static irqreturn_t button_isr(int irq, void *data)
  */
 static void blink_timer_func(struct timer_list *t)
 {
-	printk(KERN_INFO "%s\n", __func__);
+	/* Uncomment for printing. */
+	// printk(KERN_INFO "%s\n", __func__);
 
-	gpio_set_value(ioPins[0], data);
-	gpio_set_value(ioPins[1], data2);
-	data = !data;
-	data2 = !data2;
+	gpio_set_value(ioPins[0], led1);
+	gpio_set_value(ioPins[1], led2);
 
-	if (edgePin == ioPins[0] || edgePin == ioPins[1])
-	{
-		cnt++;
-		printk(KERN_INFO "--- Count: %d --- (pin %d) ---\n", cnt, edgePin);
-	}
-	else
-	{
-		printk(KERN_INFO "Wrong pin detection (tried pin %d instead of %d or %d)", edgePin, ioPins[0], ioPins[1]);
-		return;
-	}
+	led1 = !led1;
+	led2 = !led2;
 
 	/* schedule next execution */
 	blink_timer.expires = jiffies + (toggleSpeed * HZ); // 1 sec.

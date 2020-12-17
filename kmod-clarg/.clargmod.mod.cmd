@@ -1,1 +1,0 @@
-cmd_/home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/kmod-clarg/clargmod.mod := { echo  /home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/kmod-clarg/clargmod.o; echo; } > /home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/kmod-clarg/clargmod.mod

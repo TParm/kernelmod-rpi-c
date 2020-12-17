@@ -36,16 +36,16 @@ __used __section(__versions) = {
 	{ 0x8574ca6c, "gpio_request_array" },
 	{ 0xc6f46339, "init_timer_key" },
 	{ 0x403f9529, "gpio_request_one" },
+	{ 0xc5850110, "printk" },
 	{ 0x1c51b9f2, "gpiod_get_raw_value" },
 	{ 0x24d273d1, "add_timer" },
 	{ 0x526c3a6c, "jiffies" },
 	{ 0x2ba87a73, "gpiod_set_raw_value" },
 	{ 0x592aaad1, "gpio_to_desc" },
-	{ 0xc5850110, "printk" },
 	{ 0xb1ad28e0, "__gnu_mcount_nc" },
 };
 
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "7B01D12AC8451E878ECEAF1");
+MODULE_INFO(srcversion, "B322DD4EA7814CDB0E297E7");

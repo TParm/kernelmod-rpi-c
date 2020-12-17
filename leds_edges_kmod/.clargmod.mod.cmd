@@ -1,0 +1,1 @@
+cmd_/home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/leds_edges_kmod/clargmod.mod := { echo  /home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/leds_edges_kmod/clargmod.o; echo; } > /home/pi/trailer/school/embedded/projects/kernel-module/kernelmod-rpi-c/leds_edges_kmod/clargmod.mod
